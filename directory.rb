@@ -17,7 +17,7 @@ end
 # Q6 Make everything that prints beauftifully aligned by using .center(n).
 def input_student_name_cohort
 	#Q7 let go of the hard-coded cohort. Take cohort input, include default cohort if nil.
- 	puts "Please spell out the names of the students and their cohort in the form 'Name, Month'."
+ 	puts "Please spell out the names of the students and their cohort in the form 'Name,Month'."
 	puts "To finish, just hit return twice"
   students = []
   default_cohort = "november"
