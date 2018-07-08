@@ -39,8 +39,28 @@ def input_student_name_cohort
 end
 
 # Q8 check for typos in input_student_name_cohort; allow changes.
-def check
-	
+def check(students)
+	boolean = nil
+	while true do
+	puts "In the printed list of students, are there any students that has a typo? Y/N."
+	boolean = gets.chomp
+		if boolean == "Y"
+			puts "Give me a number of a student that has an info typo, hit enter, then type the correct words."
+			number = gets.chomp.to_i
+			correct_input = gets.chomp.split(",")
+			@correct_name = correct_input[0]
+			@correct_cohort = correct_input[1]
+			students[number - 1] = {name: @correct_name, cohort: @correct_cohort}
+		elsif boolean == "N"
+			puts "great, no further changes needed."
+			break
+		end
+	end
+	students
+end
+
+
+
 
 def print_header
   puts "The students of Villains Academy".center(60)
@@ -79,6 +99,11 @@ end
 
 # THIS IS THE IMPORTANT BIT. What methods do we run and in what order?
 students = input_student_name_cohort
+print_header
+prints_while_method(students)
+check(students)
+print_footer(students)
+
 print_header
 prints_while_method(students)
 print_footer(students)
