@@ -59,8 +59,21 @@ def check(students)
 	students
 end
 
-
-
+# Q8 arrange the students by cohort.
+def print_by_cohort(students)
+	cohort_array = []
+	students.each do |student_hash|
+		cohort_array.push(student_hash[:cohort]).uniq!
+	end
+	cohort_array.each do |month|
+		puts month
+		students.each_with_index do |student, index|
+			if student[:cohort] == month
+				puts "#{index + 1}. " + " #{students[index][:name]} (#{students[index][:cohort]} cohort)".center(60)
+			end
+		end
+	end
+end
 
 def print_header
   puts "The students of Villains Academy".center(60)
@@ -69,19 +82,19 @@ end
 
 
 
-# Q1 Add index to list of students
-def prints(students)
-  students.each_with_index do |student,index|
-  	# Q2 print students whose names start w/ a specific letter; here, letter D.
+# COMMENT Q1 Add index to list of students
+# def prints(students)
+  # students.each_with_index do |student,index|
+  	# COMMENT Q2 print students whose names start w/ a specific letter; here, letter D.
   	# if student[:name].start_with?('d','D')
 
-  	# Q3 print student whose name is < 12 characters.
-  	max_length = 12
-  	if student[:name].length < max_length
-      puts "#{index + 1}." + " #{student[:name]} (#{student[:cohort]} cohort)".center(60)
-    end
-  end
-end
+  	# COMMENT Q3 print student whose name is < 12 characters.
+  	# max_length = 12
+  	# if student[:name].length < max_length
+    #   puts "#{index + 1}." + " #{student[:name]} (#{student[:cohort]} cohort)".center(60)
+    # end
+  # end
+# end
 
 # Q4 As above, use while or until control flow method to print all students
 def prints_while_method(students)
@@ -94,16 +107,19 @@ end
 
 
 def print_footer(students)
-  print "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students"
 end
 
-# THIS IS THE IMPORTANT BIT. What methods do we run and in what order?
+# Gets student names and cohort and displays them.
 students = input_student_name_cohort
 print_header
 prints_while_method(students)
+# Checks that everything is typed in correctly and allow changes.
 check(students)
 print_footer(students)
-
+# Displays the corrected list of students' names and cohort.
 print_header
 prints_while_method(students)
 print_footer(students)
+# Displays by cohort
+print_by_cohort(students)
