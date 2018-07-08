@@ -32,7 +32,12 @@ def input_student_name_cohort
   	end
     # add the student hash to the array
     students << {name: @name, cohort: @cohort} # hobby: @hobbby, country: @ country, height: @height}
-    puts "Now we have #{students.count} students"
+    # Q9 correcting grammar to allow singular student
+    if students.count < 2
+    	puts "Now we have #{students.count} student"
+    else
+    	puts "Now we have #{students.count} students"
+    end
     input = gets.chomp.split(",")
   end
   students
@@ -107,7 +112,12 @@ end
 
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+	# Q9 correcting grammar to allow singular student
+	if students.count < 2
+  	puts "Overall, we have #{students.count} great student"
+  else
+  	puts "Overall, we have #{students.count} great students"
+  end
 end
 
 # Gets student names and cohort and displays them.
