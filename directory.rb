@@ -16,11 +16,20 @@
 
 def interactive_menu
 	loop do
-		# print the menu and ask the user what to do
 		print_menu
-		# read the input and save it into a variable
-		selection = gets.chomp
-		# do what the user has asked
+		process(STDIN.gets.chomp)
+	end
+end
+
+def print_menu
+	puts "1. Input the students"
+	puts "2. Show the students"
+	puts "3. Save the list to students.csv"
+	puts "4. Load the list from students.csv"
+	puts "9. Exit"
+end
+
+def process(selection)
 		case selection
 			when "1"
 				@students = input_student_name_cohort
@@ -28,12 +37,13 @@ def interactive_menu
 				display
 			when "3"
 				save_students
+			when "4"
+				load_students
 			when "9"
 				exit # this will cause the program to terminate
 			else
 				puts "I don't know what you meant, try again"
 		end
-	end
 end
 
 def save_students
@@ -48,11 +58,13 @@ def save_students
 	file.close
 end
 
-def print_menu
-	puts "1. Input the students"
-	puts "2. Show the students"
-	puts "3. Save the list to students.csv"
-	puts "9. Exit"
+def load_students
+	file = File.open("students.csv", "r")
+	file.readlines.each do |line|
+		name, cohort = line.chomp.split(',')
+			@students << {name: name, cohort: cohort.to_sym}
+	end
+	file.close
 end
 
 # Q6 Make everything that prints beauftifully aligned by using .center(n).
