@@ -110,6 +110,16 @@ def prints_while_method(students)
 	end
 end
 
+# Q12 include a puts for if there are no students.
+def display(students)
+	if students.count == 0
+		puts "We have no students"
+	else
+		print_header
+		prints_while_method(students)
+		print_footer(students)
+	end
+end
 
 def print_footer(students)
 	# Q9 correcting grammar to allow singular student
@@ -122,14 +132,11 @@ end
 
 # Gets student names and cohort and displays them.
 students = input_student_name_cohort
-print_header
-prints_while_method(students)
+display(students)
 # Checks that everything is typed in correctly and allow changes.
 check(students)
 print_footer(students)
 # Displays the corrected list of students' names and cohort.
-print_header
-prints_while_method(students)
-print_footer(students)
+display(students)
 # Displays by cohort
 print_by_cohort(students)
